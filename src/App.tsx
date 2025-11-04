@@ -86,6 +86,7 @@ function App() {
 
   const navItems = [
     { id: 'about', label: 'About' },
+    { id: 'projects', label: 'Projects' },
     { id: 'experience', label: 'Experience' },
     { id: 'skills', label: 'Skills' },
     { id: 'education', label: 'Education' },
@@ -224,7 +225,7 @@ function App() {
           </div>
         </section>
 
-        <section id="experience" className="min-h-screen flex flex-col items-center justify-center px-4 py-20">
+        <section id="projects" className="min-h-screen flex flex-col items-center justify-center px-4 py-20">
           <div className="max-w-6xl w-full">
             <h1 className="text-6xl md:text-7xl font-bold text-center mb-16 text-blue-400">
               Projects
@@ -277,6 +278,34 @@ function App() {
                     <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                     Created a hotel booking and admin app with user authentication, booking management, and admin dashboard using Node.js, Express.js, and MongoDB.
                     </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="experience" className="py-20 px-4">
+          <div className="max-w-6xl mx-auto">
+            <h2 className="text-5xl font-bold text-center mb-16 text-blue-400">Experience</h2>
+            <div className="space-y-8">
+              <div className="bg-white rounded-xl p-8 border border-gray-200 hover:border-blue-500 dark:bg-[#1a1f2e] dark:border-gray-700 transition-all duration-300">
+                <div className="flex items-start gap-6">
+                  <div className="text-blue-400 mt-2">
+                    <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold mb-2">Backend Developer Intern — Mushafir Global</h3>
+                    <p className="text-gray-500 text-sm italic mb-4">Nov 2025 – Present</p>
+                    <ul className="list-disc pl-6 space-y-2 text-gray-700 dark:text-gray-300">
+                      <li>Working on backend development using Node.js, Express.js, and MongoDB.</li>
+                      <li>Building and optimizing RESTful APIs for performance and scalability.</li>
+                      <li>Collaborating with frontend developers to ensure seamless integration.</li>
+                      <li>Implementing authentication and data management features.</li>
+                      <li>Gaining hands-on experience in real-world project development and deployment.</li>
+                    </ul>
                   </div>
                 </div>
               </div>
