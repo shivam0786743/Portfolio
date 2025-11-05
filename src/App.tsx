@@ -12,6 +12,44 @@ function App() {
     return prefersDark ? 'dark' : 'light';
   });
 
+  // Contact form state
+  const [contactName, setContactName] = useState('');
+  const [contactEmail, setContactEmail] = useState('');
+  const [contactMobile, setContactMobile] = useState('');
+  const [contactMessage, setContactMessage] = useState('');
+
+  const handleContactSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  
+    try {
+      const response = await fetch("http://localhost:5000/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: contactName,
+          email: contactEmail,
+          mobile: contactMobile,
+          message: contactMessage,
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (data.success) {
+        alert("✅ Message sent successfully!");
+        setContactName("");
+        setContactEmail("");
+        setContactMobile("");
+        setContactMessage("");
+      } else {
+        alert("❌ Failed to send message. Try again.");
+      }
+    } catch (error) {
+      alert("⚠️ Server not responding. Check backend connection.");
+    }
+  };
+  
+
   useEffect(() => {
     const root = document.documentElement;
     if (theme === 'dark') {
@@ -506,6 +544,65 @@ function App() {
                 <h3 className="text-xl font-bold mb-2">Phone</h3>
                 <p className="text-gray-700 dark:text-gray-400">+91 9992011619</p>
               </a>
+            </div>
+
+            {/* Contact Form */}
+            <div className="bg-white rounded-xl p-8 border border-gray-200 hover:border-blue-500 dark:bg-[#1a1f2e] dark:border-gray-700 transition-all duration-300 mb-16">
+              <h3 className="text-2xl font-bold mb-6 text-blue-400 text-center">Contact Form</h3>
+              <form onSubmit={handleContactSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="col-span-1">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Name</label>
+                  <input
+                    id="name"
+                    type="text"
+                    value={contactName}
+                    onChange={(e) => setContactName(e.target.value)}
+                    className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0f1420] text-gray-900 dark:text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div className="col-span-1">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email</label>
+                  <input
+                    id="email"
+                    type="email"
+                    value={contactEmail}
+                    onChange={(e) => setContactEmail(e.target.value)}
+                    className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0f1420] text-gray-900 dark:text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="you@example.com"
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <label htmlFor="mobile" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Mobile Number</label>
+                  <input
+                    id="mobile"
+                    type="text"
+                    value={contactMobile}
+                    onChange={(e) => setContactMobile(e.target.value)}
+                    className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0f1420] text-gray-900 dark:text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="e.g. +91 9992011619"
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Message</label>
+                  <textarea
+                    id="message"
+                    rows={5}
+                    value={contactMessage}
+                    onChange={(e) => setContactMessage(e.target.value)}
+                    className="w-full rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#0f1420] text-gray-900 dark:text-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y"
+                    placeholder="Write your message..."
+                  />
+                </div>
+                <div className="md:col-span-2 flex justify-center">
+                  <button
+                    type="submit"
+                    className="px-8 py-3 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-colors"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
             </div>
 
             <div className="bg-gray-100 dark:bg-[#0f1420] py-8 rounded-t-3xl">
